@@ -4,7 +4,7 @@ This repository contains a small demonstration of how a flaw in the gramine prot
 
 ## Introduction
 The repository contains a python enclave template that runs an encrypted script (scripts/crypted.py which is at the same time trusted and protected). The key to the script is stored on the server, which gives it to the enclave using the remote attestation mechanism.
-In this example, the server does not check the enclave dimension, but only displays it. In real life, the server checks the measurement and transmits the key only after verification.
+In this example, the server does not check the enclave measurement, but only displays it. In real life, the server checks the measurement and transmits the key only after verification.
 
 The repository also contains two python scripts:
 * helloworld.py - non-malicious
