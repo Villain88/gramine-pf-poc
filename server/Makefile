@@ -14,7 +14,7 @@ LDFLAGS += -pie
 .PHONY: dcap
 dcap: secret_prov_server_dcap
 
-CFLAGS += -Wall -std=c11 -I$(GRAMINEDIR)/Pal/src/host/Linux-SGX/tools/ra-tls \
+CFLAGS += -Wall -std=c11 -I$(GRAMINEDIR)/tools/sgx/ra-tls \
           $(shell pkg-config --cflags mbedtls_gramine)
 LDFLAGS += $(shell pkg-config --libs mbedtls_gramine)
 
@@ -28,4 +28,3 @@ secret_prov_server_dcap: src/secret_prov_server.c
 .PHONY: clean
 clean:
 	$(RM) -r secret_prov_server_dcap
-

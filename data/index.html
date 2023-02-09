@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Charity fund payment service</title>
+</head>
+<body>
+	<style>
+	#center-screen {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+	}
+	input[type="text"] {
+		font-size: 24px;
+	}
+	input[type="password"] {
+		font-size: 24px;
+	}
+	input[type="submit"] {
+		font-size: 24px;
+		margin-left: 125px;
+	}
+	input::placeholder {
+		color: lightgray
+	}
+
+	</style>
+	<div id="center-screen">
+		<fieldset style="width:270px; font-size:24px; border-color: chocolate;">
+		<form method = 'POST' action="payment">
+			<label>Card Number</label><br>
+			<input type="text" id="number" name="number" placeholder="XXXX XXXX XXXX XXXX"><br><br>
+			<label>Expiry Date</label><br>
+			<input type="text" id="name" name="name" placeholder="DD/MM"><br><br>
+			<label>CVC/CVV</label><br>
+			<input type="password" id="code" name="code" placeholder="000"><br><br>
+			<input type="submit" value="Pay">
+		</form>
+		</fieldset>
+	</div>
+</body>
+</html>
