@@ -1,5 +1,10 @@
 #!/bin/sh -ex
 
+if [ "$#" -lt "1" ]; then
+    echo "GSC CONFIG NOT PASSED"
+    exit 1
+fi
+
 GSC_FIXED_COMMIT="v1.3.1"
 BASE_IMAGE_NAME="python3.10-base-gramine-poc"
 
