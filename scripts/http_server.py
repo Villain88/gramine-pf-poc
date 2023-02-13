@@ -24,12 +24,9 @@ class MyHttpRequestHandler(SimpleHTTPRequestHandler):
             for item in list_of_post_data:
                 variable, value = item.split('=')
                 post_data_dict[variable] = value
-
-            payment_ok = True
-            #make payment
+            # make payment
 
             self.path = INPUT_DIR + '/okay.html'
-
 
         return SimpleHTTPRequestHandler.do_GET(self)
 
