@@ -38,7 +38,6 @@ mkdir -p /scripts/http_server_enc && mv /poc/run/entrypoint.py /scripts/http_ser
 
 rm -rf /data/encrypted
 gramine-sgx-pf-crypt encrypt -w /keys/wrap-key -i /data/ -o /poc/data
-
 mkdir -p /data/encrypted && mv /poc/data/* /data/encrypted/
 
 
@@ -146,8 +145,14 @@ cd ..
 docker run --rm  -it -v ${PWD}/scripts:/scripts -v ${PWD}/data:/data -v ${PWD}/builder:/builder -v ${PWD}/server/keys:/keys \
     --entrypoint /bin/bash gsc-python3.10-base-gramine-poc
 
-cat /builder/sign.sh
-/builder/sign.sh
+export PYTHONPATH="\${PYTHONPATH}:$(find /gramine/meson_build_output/lib -type d -path '*/site-packages')"
+export PKG_CONFIG_PATH="\${PKG_CONFIG_PATH}:$(find /gramine/meson_build_output/lib -type d -path '*/pkgconfig')"
+
+openssl genrsa -3 -out /enclave-key.pem 3072
+
+cp /scripts/http_server.py /poc/run/entrypoint.py
+mkdir -p /scripts/http_server_manifest
+gramine-sgx-sign -k "/enclave-key.pem" -m "/gramine/app_files/entrypoint.manifest" -o "/scripts/http_server_manifest/entrypoint.manifest.sgx" -s "/scripts/http_server_manifest/entrypoint.sig"
 
 19) Run enclave
 
